@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import ShowDetail from './pages/ShowDetail'
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 const App = () => {
   return (
@@ -11,6 +13,8 @@ const App = () => {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/shows/:id" element={<ShowDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </BrowserRouter>

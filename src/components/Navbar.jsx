@@ -12,9 +12,9 @@ const Navbar = () => {
             <Logo />
           </Link>
           <SearchBar />
-          <div className="flex justify-end gap-x-6 text-gray-50">
-            <button>Login</button>
-            <button>Register</button>
+          <div className="flex items-center justify-end gap-x-6 text-gray-50">
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </div>
         </div>
       </div>
