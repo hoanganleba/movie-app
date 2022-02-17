@@ -1,0 +1,25 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Logo from './Logo'
+import SearchBar from './SearchBar'
+
+const Navbar = () => {
+  return (
+    <div className="sticky top-0 bg-red-600 shadow-lg">
+      <div className="container py-4 mx-auto">
+        <div className="grid grid-cols-6 gap-x-12">
+          <Link className="flex items-center" to={"/"}>
+            <Logo />
+          </Link>
+          <SearchBar />
+          <div className="flex justify-end gap-x-6 text-gray-50">
+            <button>Login</button>
+            <button>Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Navbar
