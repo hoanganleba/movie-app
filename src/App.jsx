@@ -9,7 +9,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="container mx-auto mt-12">
+      <div className="max-w-[90%] mx-auto my-12">
         <Routes>
           <Route index element={<Home />} />
           <Route path="/shows/:id" element={<ShowDetail />} />

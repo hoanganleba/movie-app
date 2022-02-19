@@ -4,6 +4,9 @@ const MovieCard = (props) => {
   return (
     <div className="w-full">
       <img
+        loading="lazy"
+        width="600"
+        height="830"
         className="w-full rounded-lg shadow-lg shadow-gray-800/50"
         src={props.imgSrc}
         alt={props.name}
