@@ -4,20 +4,25 @@ import ShowDetail from './pages/ShowDetail'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import UserContextProvider from './providers/UserContextProvider'
+import Profile from './pages/Profile'
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="max-w-[90%] mx-auto my-12">
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/shows/:id" element={<ShowDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <UserContextProvider>
+      <BrowserRouter>
+        <Navbar />
+        <div className="max-w-[90%] mx-auto py-12">
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="/shows/:id" element={<ShowDetail />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </UserContextProvider>
   )
 }
 

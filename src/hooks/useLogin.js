@@ -1,22 +1,22 @@
-import axios from 'axios'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import UserContext from '../contexts/UserContext'
+import userServices from '../services/userServices'
 
 const useLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { setUserId } = useContext(UserContext)
 
   const handleSubmitLogin = (e) => {
     e.preventDefault()
-    axios
-      .post('/api/login', {
-        email,
-        password,
-      })
-      .then(function (response) {
-        console.log(response)
-        navigate("/", { replace: true });
+    userServices
+      .login({ email, password })
+      .then((response) => {
+        setUserId(response.data.id)
+        localStorage.setItem('userId', response.data.id)
+        navigate('/', { replace: true })
       })
       .catch(function (error) {
         console.log(error)

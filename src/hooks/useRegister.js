@@ -1,6 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import userServices from '../services/userServices'
 
 const useRegister = () => {
   const [email, setEmail] = useState('')
@@ -9,11 +9,8 @@ const useRegister = () => {
 
   const handleSubmitRegister = (e) => {
     e.preventDefault()
-    axios
-      .post('/api/register', {
-        email,
-        password,
-      })
+    userServices
+      .register({ email, password })
       .then(function (response) {
         console.log(response)
         navigate('/login', { replace: true })
@@ -31,7 +28,11 @@ const useRegister = () => {
     setPassword(e.target.value)
   }
 
-  return [handleEmailInputChange, handlePasswordInputChange, handleSubmitRegister]
+  return [
+    handleEmailInputChange,
+    handlePasswordInputChange,
+    handleSubmitRegister,
+  ]
 }
 
 export default useRegister

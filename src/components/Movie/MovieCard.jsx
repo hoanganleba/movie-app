@@ -1,5 +1,3 @@
-import React from 'react'
-
 const MovieCard = (props) => {
   return (
     <div className="w-full">

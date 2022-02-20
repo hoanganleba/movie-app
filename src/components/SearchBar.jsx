@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import useSearch from '../hooks/useSearch'
 
@@ -28,13 +27,28 @@ const SearchBar = () => {
           className="w-full h-full p-2 ml-2 placeholder-gray-100 bg-transparent text-gray-50 focus:outline-none"
           type="text"
         />
-        <div className={`${inputValue !== '' ? 'block' : 'hidden'} absolute inset-x-0 z-10 overflow-y-auto bg-white divide-y divide-gray-100 rounded shadow-2xl max-h-72 shadow-gray-900/90 top-12`}>
+        <div
+          className={`${
+            inputValue !== '' ? 'block' : 'hidden'
+          } absolute inset-x-0 z-10 overflow-y-auto bg-white divide-y divide-gray-100 rounded shadow-2xl max-h-72 shadow-gray-900/90 top-12`}
+        >
           {searchData?.map((item, index) => (
-            <Link className="flex px-3 py-2" onClick={() => reset()} key={index} to={`/shows/${item.show.id}`}>
-              <img className="w-16 rounded-sm" src={item.show.image?.medium} alt={item.show.name} />
+            <Link
+              className="flex px-3 py-2"
+              onClick={() => reset()}
+              key={index}
+              to={`/shows/${item.show.id}`}
+            >
+              <img
+                className="w-16 rounded-sm"
+                src={item.show.image?.medium}
+                alt={item.show.name}
+              />
               <div className="ml-3">
                 <p className="text-gray-900/90">{item.show.name}</p>
-                <p className="text-xs text-gray-900/75">Rating: {item.show.rating.average ? item.show.rating.average : "none"}</p>
+                <p className="text-xs text-gray-900/75">
+                  {item.show.genres?.join(", ")}
+                </p>
               </div>
             </Link>
           ))}
