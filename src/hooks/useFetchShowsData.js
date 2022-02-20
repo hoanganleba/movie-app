@@ -39,6 +39,7 @@ const useFetchShowsData = () => {
         if (item.genres.filter((item) => genres.includes(item)).length !== 0) {
           return item
         }
+        return null
       })
       .filter((item) => item !== undefined)
   }
