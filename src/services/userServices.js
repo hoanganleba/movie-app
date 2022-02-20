@@ -5,13 +5,13 @@ const userServices = {
     return axios.get(`/api/profile/${id}`)
   },
   login(value) {
-    return axios.post('/api/login', {
+    return axios.post('/api/auth/login', {
       email: value.email,
       password: value.password,
     })
   },
   register(value) {
-    return axios.post('/api/register', {
+    return axios.post('/api/auth/register', {
       email: value.email,
       password: value.password,
     })
