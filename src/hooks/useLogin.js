@@ -14,8 +14,8 @@ const useLogin = () => {
     userServices
       .login({ email, password })
       .then((response) => {
-        setUserId(response.data.id)
-        localStorage.setItem('userId', response.data.id)
+        setUserId(response.data.userId)
+        localStorage.setItem('userId', response.data.userId)
         navigate('/', { replace: true })
       })
       .catch(function (error) {
