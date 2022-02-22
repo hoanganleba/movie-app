@@ -15,7 +15,7 @@ const Navbar = () => {
           </Link>
           <SearchBar />
           {userId ? (
-            <Link to={`/profile/${userId}`} className="flex items-center justify-center">
+            <Link to={`/profile`} className="flex items-center justify-center">
               <img
                 className="w-12 h-12 rounded-full"
                 src="https://www.w3schools.com/w3images/avatar2.png"

@@ -6,20 +6,36 @@ import userServices from '../services/userServices'
 const useLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [alert, setAlert] = useState({ type: '', message: '' })
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const { setUserId } = useContext(UserContext)
 
   const handleSubmitLogin = (e) => {
     e.preventDefault()
+    setLoading(true)
+    setAlert({ type: '', message: '' })
+    if (email === '' || password === '') {
+      setAlert({
+        type: 'danger',
+        message: 'Email or password must not left empty',
+      })
+      setLoading(false)
+      return
+    }
     userServices
       .login({ email, password })
       .then((response) => {
         setUserId(response.data.userId)
         localStorage.setItem('userId', response.data.userId)
-        navigate('/', { replace: true })
+        setAlert({ type: 'success', message: response.data.message })
+        setTimeout(() => {
+          navigate('/', { replace: true })
+        }, 500)
       })
       .catch(function (error) {
-        console.log(error)
+        setAlert({ type: 'danger', message: error.response.data.message })
+        setLoading(false)
       })
   }
 
@@ -31,7 +47,13 @@ const useLogin = () => {
     setPassword(e.target.value)
   }
 
-  return [handleEmailInputChange, handlePasswordInputChange, handleSubmitLogin]
+  return {
+    handleEmailInputChange,
+    handlePasswordInputChange,
+    handleSubmitLogin,
+    alert,
+    loading,
+  }
 }
 
 export default useLogin

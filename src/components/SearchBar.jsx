@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import useSearch from '../hooks/useSearch'
+import Loading from './Loading'
 
 const SearchBar = () => {
-  const [searchData, inputValue, handleInputChange, reset] = useSearch()
+  const { searchData, inputValue, handleInputChange, reset, loading } =
+    useSearch()
 
   return (
     <>
@@ -32,26 +34,32 @@ const SearchBar = () => {
             inputValue !== '' ? 'block' : 'hidden'
           } absolute inset-x-0 z-10 overflow-y-auto bg-white divide-y divide-gray-100 rounded shadow-2xl max-h-72 shadow-gray-900/90 top-12`}
         >
-          {searchData?.map((item, index) => (
-            <Link
-              className="flex px-3 py-2"
-              onClick={() => reset()}
-              key={index}
-              to={`/shows/${item.show.id}`}
-            >
-              <img
-                className="w-16 rounded-sm"
-                src={item.show.image?.medium}
-                alt={item.show.name}
-              />
-              <div className="ml-3">
-                <p className="text-gray-900/90">{item.show.name}</p>
-                <p className="text-xs text-gray-900/75">
-                  {item.show.genres?.join(", ")}
-                </p>
-              </div>
-            </Link>
-          ))}
+          {loading ? (
+            <div className="flex items-center justify-center h-56">
+              <Loading size="w-8 h-8" />
+            </div>
+          ) : (
+            searchData?.map((item, index) => (
+              <Link
+                className="flex px-3 py-2"
+                onClick={() => reset()}
+                key={index}
+                to={`/shows/${item.show.id}`}
+              >
+                <img
+                  className="w-16 rounded-sm"
+                  src={item.show.image?.medium}
+                  alt={item.show.name}
+                />
+                <div className="ml-3">
+                  <p className="text-gray-900/90">{item.show.name}</p>
+                  <p className="text-xs text-gray-900/75">
+                    {item.show.genres?.join(', ')}
+                  </p>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </>

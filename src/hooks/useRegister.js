@@ -6,17 +6,25 @@ const useRegister = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const [alert, setAlert] = useState({ type: '', message: '' })
+  const [loading, setLoading] = useState(false)
 
   const handleSubmitRegister = (e) => {
     e.preventDefault()
+    setLoading(true)
+    setAlert({type: '', message: ''})
     userServices
       .register({ email, password })
       .then(function (response) {
-        console.log(response)
-        navigate('/login', { replace: true })
+        setLoading(false)
+        setAlert({type: 'success', message: response.data.message})
+        setTimeout(() => {
+          navigate('/login', { replace: true })
+        }, 500)
       })
       .catch(function (error) {
-        console.log(error)
+        setAlert({ type: 'danger', message: error.response.data.message })
+        setLoading(false)
       })
   }
 
@@ -28,11 +36,13 @@ const useRegister = () => {
     setPassword(e.target.value)
   }
 
-  return [
+  return {
     handleEmailInputChange,
     handlePasswordInputChange,
     handleSubmitRegister,
-  ]
+    alert,
+    loading,
+  }
 }
 
 export default useRegister

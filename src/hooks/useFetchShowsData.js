@@ -41,7 +41,7 @@ const useFetchShowsData = () => {
         }
         return null
       })
-      .filter((item) => item !== undefined)
+      .filter((item) => item !== undefined && item !== null)
   }
 
   const filterTypes = (types) => {

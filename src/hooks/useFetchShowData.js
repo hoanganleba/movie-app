@@ -13,7 +13,7 @@ const useFetchShowData = (id) => {
     fetchShowData(id)
   }, [id])
 
-  return showData
+  return { showData, fetchShowData }
 }
 
 export default useFetchShowData
