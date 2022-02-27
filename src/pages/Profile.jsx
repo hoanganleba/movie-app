@@ -13,7 +13,7 @@ const Profile = () => {
       <h1 className="mb-3 text-2xl font-medium text-gray-900">Profile</h1>
       <p>Email: {user.email}</p>
       <h3 className="mt-8 mb-3 font-medium text-gray-900">Favorite Shows</h3>
-      <div className="grid grid-cols-6 mt-6 gap-x-12 gap-y-20">
+      <div className="grid grid-cols-1 mt-6 md:grid-cols-4 lg:grid-cols-6 gap-x-12 gap-y-20">
         {userFavoriteShows?.map((item, index) => (
           <Link key={index} to={`/shows/${item.id}`}>
             <MovieCard

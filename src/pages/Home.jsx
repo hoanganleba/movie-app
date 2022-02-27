@@ -107,7 +107,7 @@ const Home = () => {
         ''
       )}
 
-      <div className="grid grid-cols-6 mt-6 gap-y-20 gap-x-12">
+      <div className="grid grid-cols-1 mt-6 md:grid-cols-4 lg:grid-cols-6 gap-y-10 lg:gap-y-20 gap-x-12">
         {showsData?.map((item, index) => (
           <Link key={index} to={`/shows/${item.id}`}>
             <MovieCard

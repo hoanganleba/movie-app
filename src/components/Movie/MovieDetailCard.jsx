@@ -9,7 +9,7 @@ const MovieDetailCard = (props) => {
   const { userFavoriteShowsId } = useFetchProfileData(userId)
   return (
     <div>
-      <div className="grid grid-cols-5 gap-x-16">
+      <div className="grid lg:grid-cols-5 lg:gap-x-16">
         <img
           loading="lazy"
           width="600"
@@ -18,8 +18,8 @@ const MovieDetailCard = (props) => {
           src={props.imgSrc}
           alt={props.name}
         />
-        <div className="col-span-4">
-          <h1 className="mb-4 text-3xl font-medium text-gray-900">
+        <div className="lg:col-span-4">
+          <h1 className="mt-8 mb-4 text-3xl font-medium text-gray-900 lg:mt-0">
             {props.name}
           </h1>
           <p className="text-gray-900/80">
@@ -86,7 +86,7 @@ const MovieDetailCard = (props) => {
         dangerouslySetInnerHTML={{ __html: props.summary }}
       />
       <h3 className="mt-20 mb-6 text-2xl font-medium">Cast</h3>
-      <div className="grid grid-cols-5 gap-20">
+      <div className="grid gap-10 lg:gap-20 lg:grid-cols-5">
         {props.casts?.map((item, index) => (
           <div key={index}>
             <img
